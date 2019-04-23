@@ -18,9 +18,8 @@
 # under the License.
 
 # pylint: disable=
-"""Main file to run training of sentiment analysis code on NLPCC 2018 bilingual data."""
-from gluonnlp.model import ConvolutionalEncoder
 from mxnet import gluon
+
 
 class TemplatedSentimentNet(gluon.Block):
     """Network for sentiment analysis."""
