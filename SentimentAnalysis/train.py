@@ -166,9 +166,8 @@ if __name__ == '__main__':
 
     for example in examples:
         pred = net(
-            mx.nd.reshape(
-                mx.nd.array(vocab[example], ctx=context),
-                shape=(-1, 1)), mx.nd.array([4], ctx=context)).sigmoid()
+            mx.nd.reshape(mx.nd.array(vocab[example], ctx=context), shape=(-1, 1)),
+            mx.nd.array([4], ctx=context)).sigmoid()
 
         print('Positiveness of the sentiment "{}" is {}'.format(' '.join(example),
                                                                 pred[0].asscalar()))
