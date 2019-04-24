@@ -2,4 +2,7 @@
 */.ipynb_checkpoints/
 */logs/
 net_parameters.params
+*/__pycache__/
+best_model.params
+WA_Fn-UseC_-Telco-Customer-Churn.csv
 
