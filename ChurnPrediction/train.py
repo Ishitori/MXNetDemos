@@ -6,14 +6,13 @@ from mxnet.gluon.data import DataLoader
 from mxnet.metric import F1
 
 from ChurnPrediction import utils
-from ChurnPrediction.data import get_data_frame, TelcoDataset
+from ChurnPrediction.data import get_data_frame, TelcoDataset, train_validate_test_split
 from ChurnPrediction.model import TelcoModel
 
 
 def train(net, train_dataloader, val_dataloader, epochs, context):
     max_f1 = 0
     best_epoch = -1
-    trainer = Trainer(net.collect_params(), 'ftml', {'learning_rate': options.lr})
     trainer = Trainer(net.collect_params(), 'ftml', {'learning_rate': options.lr})
     l2_loss_fn = gluon.loss.L2Loss()
     loss_fn = gluon.loss.SoftmaxCrossEntropyLoss()
@@ -70,7 +69,7 @@ if __name__ == '__main__':
 
     print('Receiving data')
     df = get_data_frame()
-    train_df, val_df, test_df = np.split(df.sample(frac=1), [int(.8 * len(df)), int(.9 * len(df))])
+    train_df, val_df, test_df = train_validate_test_split(df)
     print('Train: {} records, Val: {} records, Test: {} records'.format(len(train_df),
                                                                         len(val_df),
                                                                         len(test_df)))
