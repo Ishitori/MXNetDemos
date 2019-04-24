@@ -1,0 +1,14 @@
+1. To archive QA Bert model:
+
+> cd ./MXNetModelServerBERTDemo/
+> model-archiver --model-name bert_qa -f --model-path . --handler bert_service:service_inference --runtime python --export-path /tmp
+
+2. To serve model using MXNet model server:
+
+> mxnet-model-server --models bert_qa.mar --model-store /tmp
+
+3.1. Open demo.html page in a browser
+
+3.2. Or run inference manually from terminal:
+
+curl -X POST http://127.0.0.1:8080/predictions/bert_qa -F "data=[{\"paragraph\":\"Before the foundation can be dug, contractors are typically required to verify and have existing utility lines marked, either by the utilities themselves or through a company specializing in such services. This lessens the likelihood of damage to the existing electrical, water, sewage, phone, and cable facilities, which could cause outages and potentially hazardous situations. During the construction of a building, the municipal building inspector inspects the building periodically to ensure that the construction adheres to the approved plans and the local building code. Once construction is complete and a final inspection has been passed, an occupancy permit may be issued.\",\"question\": \"Who is required to verify and have existing utility lines marked?\"}]"
